@@ -27,8 +27,6 @@ const Root: React.FC = ({ children }) => (
 );
 
 const App = () => {
-  useTitle('Generate a random link code for Pokemon Sword / Shield');
-
   const [code, setCode] = useState<string | undefined>(undefined);
 
   const handleRefresh = () => {

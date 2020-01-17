@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
 import { generateCode } from './utils/generateCode';
-import { useTitle } from './utils/useTitle';
 
 const BLUE = '#04A0ED';
 const RED = '#E60C5B';

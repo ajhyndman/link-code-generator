@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { generateCode } from './utils/generateCode';
+import { pageview } from './utils/pageview';
 
 const BLUE = '#04A0ED';
 const RED = '#E60C5B';
@@ -34,6 +35,8 @@ const App = () => {
   };
 
   useEffect(() => {
+    pageview();
+
     document.addEventListener('keypress', handleRefresh);
     return () => document.removeEventListener('keypress', handleRefresh);
   });

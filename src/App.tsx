@@ -4,19 +4,16 @@ import { MdRefresh } from 'react-icons/md';
 import { generateCode } from './utils/generateCode';
 import { isTouchscreen } from './utils/isTouchscreen';
 import { pageview } from './utils/pageview';
+import { useBackground } from './utils/useBackground';
 
-const BLUE = '#04A0ED';
-const RED = '#E60C5B';
 const WHITE = 'white';
 
-const BACKGROUND = Math.random() < 0.5 ? RED : BLUE;
 const IS_TOUCHSCREEN = isTouchscreen();
 
 const Root: React.FC = ({ children }) => (
   <div
     style={{
       alignItems: 'center',
-      background: BACKGROUND,
       color: WHITE,
       display: 'flex',
       flexDirection: 'column',
@@ -43,8 +40,13 @@ const App = () => {
     }
   };
 
-  useEffect(pageview, [])
+  // Log pageview to Google Analytics
+  useEffect(pageview, []);
 
+  // Set a random background color
+  useBackground();
+
+  // mount document event listeners
   useEffect(() => {
     if (IS_TOUCHSCREEN) {
       document.addEventListener('click', handleDocumentClick);

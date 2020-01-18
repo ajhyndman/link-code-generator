@@ -39,7 +39,7 @@ const App = () => {
 
     document.addEventListener('keypress', handleRefresh);
     return () => document.removeEventListener('keypress', handleRefresh);
-  });
+  }, []);
 
   return (
     <Root>

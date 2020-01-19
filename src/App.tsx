@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { GoMarkGithub } from 'react-icons/go';
 import { MdRefresh } from 'react-icons/md';
 
 import { generateCode } from './utils/generateCode';
@@ -24,6 +25,25 @@ const Root: React.FC = ({ children }) => (
   >
     {children}
   </div>
+);
+
+const Link = ({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}) => (
+  <a href={href} style={{
+    bottom: 8,
+    color: 'rgba(255, 255, 255, 0.5)',
+    fontSize: 8,
+    position: 'absolute',
+    right: 8,
+    textDecoration: 'none',
+  }}>
+    {children}
+  </a>
 );
 
 const App = () => {
@@ -73,6 +93,9 @@ const App = () => {
           {IS_TOUCHSCREEN ? 'Tap Here' : 'Press Spacebar'}
         </span>
       )}
+      <Link href="https://github.com/ajhyndman/link-code-generator">
+        <GoMarkGithub /> Github
+      </Link>
     </Root>
   );
 };

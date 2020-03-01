@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { GoMarkGithub } from 'react-icons/go';
 import { MdRefresh } from 'react-icons/md';
 
@@ -49,22 +49,22 @@ const Link = ({
 const App = () => {
   const [code, setCode] = useState<string | undefined>(undefined);
 
-  const handleRefresh = () => {
-    const nextCode = generateCode();
-    setCode(nextCode);
-  };
-
-  const handleDocumentClick = () => {
-    if (code == null) {
-      handleRefresh();
-    }
-  };
-
   // Log pageview to Google Analytics
   useEffect(pageview, []);
 
   // Set a random background color
   useBackground();
+
+  const handleRefresh = useCallback(() => {
+    const nextCode = generateCode();
+    setCode(nextCode);
+  }, [setCode]);
+
+  const handleDocumentClick = useCallback(() => {
+    if (code == null) {
+      handleRefresh();
+    }
+  }, [code, handleRefresh]);
 
   // mount document event listeners
   useEffect(() => {

@@ -1,4 +1,5 @@
 // The community has some commonly used codes, don't return those.
+// FIXME: This list is out of date, now that there are 8 digit codes.
 const codeBlacklist = new Set([
   7101,
   7102,
@@ -40,11 +41,12 @@ const codeBlacklist = new Set([
 ]);
 
 export const generateCode = (): string => {
-  const value = Math.trunc(Math.random() * 10000);
+  const value = Math.trunc(Math.random() * 100000000);
 
   if (!codeBlacklist.has(value)) {
     const string = value.toString();
-    return string.padStart(4, '0');
+    const paddedString = string.padStart(8, '0');
+    return `${paddedString.substring(0, 4)} ${paddedString.substring(4, 8)}`;
   }
   return generateCode();
 };
